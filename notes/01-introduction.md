@@ -13,5 +13,3 @@
 -  practical skills:  implement basic cpu scheduling and synchronization
 -  problem solving:  diagnose and troubleshoot system issues
 -  stay informed:  keep updated on operating system trends
-
-

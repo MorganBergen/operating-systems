@@ -1,5 +1,5 @@
 # Operating Systems
-
+ 
 ###  Description 
 
 Fundamental principles of modern operating systems.  CPU management including processes, threads, scheduling, synchronization, resource allocation, and deadlocks.  Memory management including paging and virtual memory.
@@ -8,6 +8,16 @@ Fundamental principles of modern operating systems.  CPU management including pr
 
 -  [Operating System Concepts Essentails, 2nd Edition, ISBN:  978-1118804926](./info/book.pdf)
 -  [Operating Systems:  Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+
+###  learning outcomes
+
+-  cpu management:  grasp processes, threads, cpu scheduling
+-  resource allocation:  learn princiles and deadlock prevention
+-  memory management:  understand paging, virtual memory, and page replacement
+-  storage management:  comprehend file system structure
+-  practical skills:  implement basic cpu scheduling and synchronization
+-  problem solving:  diagnose and troubleshoot system issues
+-  stay informed:  keep updated on operating system trends
 
 ###  Additional Information
 

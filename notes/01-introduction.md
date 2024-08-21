@@ -240,3 +240,19 @@ polished, aesthetically pleasing, minimalistic layout, smooth animations, and vi
 3.  business and office work for documents, spreadsheets, presentations, and communication
 4.  education for research, writing, presentations, and collaboration
 5.  entertainment for watching movies, listening to music, playing games, and browsing the web
+
+
+##  quiz - operating system fundamentals
+
+1.  which of the following is volatile storage - main memory
+2.  timesharing in operating systems refers to - sharing the cpu between jobs so frequently that each user can interact with their jobs while they are running
+3.  what is a trap in the context of operating systems -  a software generated interrupt caused by an error or user request
+4.  how does a device controller notify the cpu that an operation is complete - by causing an interrupt
+5.  what is the purpose of a bootstrap program - to initialize all system aspects and load the os kernel
+6.  what is caching in an operating system - copying information into a faster storage system
+7.  what is multiprogramming - scheduling jobs efficiently by switching when the os has to wait
+8.  what mechanism does the os use to control access of processes or users to resources - protection
+9.  which mode allows the os to protect itself and other system components - kernel mode
+10. what is the primary role of an operating system - to act as an intermediary between users and computer hardware
+11. which of the following is not a goal of an os - increase the size of hardware
+12. the kernel is - the program responsible for managing system resources

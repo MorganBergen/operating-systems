@@ -12,13 +12,13 @@ for example when we write a program in c or c++ and compile it, the compiler cre
 
 **importance in operating systems**
 
--  critical for multi-user environments
+critical for multi-user environments
 
--  tracks and schedules processes
+tracks and schedules processes
 
--  dispatches processes sequentially
+dispatches processes sequentially
 
--  ensures users feel they have full control of the cpu
+ensures users feel they have full control of the cpu
 
 ##  benefits
 
@@ -88,19 +88,19 @@ for example when we write a program in c or c++ and compile it, the compiler cre
 
 imagine you're cooking a meal in your kitchen.  you have several tasks to complete, like chopping vegetables, boiling water, and frying ingredients.  your kitchen has limited resources - only so many burners on a stove, a single cutting board, and one set of knives.
 
-process -  cooking a dish, boiling water, chopping vegetables
+**process** -  cooking a dish, boiling water, chopping vegetables
 
-resource -  stove, pots, knives, ingredients
+**resource** -  stove, pots, knives, ingredients
 
-states
+**states**
 
-ready -  ingredients are prepped, but not yet cooking
+**ready** -  ingredients are prepped, but not yet cooking
 
-running -  a dish is being cooked on the stove
+**running** -  a dish is being cooked on the stove
 
-waiting -  waiting for the water to boil
+**waiting** -  waiting for the water to boil
 
-terminated -  the dish is cooked and ready to be served
+**terminated** -  the dish is cooked and ready to be served
 
 ##  activity
 
@@ -134,17 +134,27 @@ when a cafe has peak hours, the staff must have status information regarding the
 
 ##  types of processes
 
-i/o bound spends more time doing i/o than computations, many short cpu bursts
+**i/o bound** 
 
-cpu bound spends more time doing computations, few very long cpu bursts
+spends more time doing i/o than computations  
+many short cpu bursts
 
+**cpu bound**
+
+spends more time doing computations, few very long cpu bursts  
 cpu burst is a period when the cpu is fully engaged with a process's tasks
 
 ##  ex i/o bound processes
 
+a text editor that frequently reads from and writes to files is i/o bound.  it spends more time waiting for file i/o operations than it does processing text.
+
+##  ex cpu bound processes
+
+a video encoding application or a scientific simulation is cpu bound.  it spends most of its time performing complex calculations, utilizing the cpu heavily, with minimal i/o operations
+
 ##  importance in scheduling
 
-understanding whether a process is i/o bound or cpu bound helps the os scheduler to allocate cpu time more effectively.  
+understanding whether a process is i/o bound or cpu bound helps the os scheduler to allocate cpu time more effectively.
 
 for example, scheduling algorithms may prioritize i/o bound processes to keep the system responsive.  since i/o bound processes often spend time waiting for i/o and quickly free up the cpu, this allows cpu bound processes to run during those idle period, making the system more efficient.
 
@@ -181,6 +191,52 @@ imagine one participant draws a simple picture or scene on their paper.  this dr
 **initial copy, independent evolution**  the child process starts as a copy with the same state but can develop differently, similar to the drawings
 
 **separation of tasks**  changes in one process do not impact the other, demonstrating effective multitasking
+
+##  modification impact
+
+changes made to shared resources by either the parent or child process will affect both.  for example if a parent process modified a file descriptor, the child process will see the changes too.
+
+##  undesirable changes
+
+unintended modifications can lead to unexpected behavior in either process.  for example if one process updates a shared variable without coordination, the other process might operate on outdated or incorrect data.
+
+##  to address modification impact and undesirable changes you should
+
+implement synchronization mechanisms
+
+manage file descriptors carefully to avoid unintended modifications
+
+use atomic operations for shared variables  
+
+employ ipc mechanisms and locking strategies
+
+design consistent access patterns for shared resources
+
+##  alternatives to fork
+
+**`posix_spawn()`**  simplifies process creation with reduced overhead and fewer pitfalls
+
+**`vfor()`**  creates a new process sharing the parent's address space until exec is called
+
+**`clone()`**  provides fine grained control over shared resources between parent and child
+
+**`createprocess()`**  windows api for creating and initializing new processes
+
+**`microkernel apis`**  offers modular process creation and management without fork
+
+##  despite its limitations, fork is still commonly used because
+
+**legacy systems** -  many existing applications depend on fork, and changing would be complex
+
+**simplicity** -  fork offers a straightforward way to create processes, especially in traditional unix applications
+
+**copy on write** -  modern fork implementations use copy on write to efficiently manage memory
+
+**historical precedent** -  for is a long standing standard in unix like systems, maintaining consistency with past practices
+
+**application design** -  some applications are built around fork, making it challenging to switch
+
+**limited alternatives** -  alternatives like `posix_spawn`
 
 ##  activity
 

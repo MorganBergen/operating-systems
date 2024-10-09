@@ -1,6 +1,6 @@
 #  overview
 
-####  concepts
+###  table of contents
 
 1.  [introduction](#introduction)  
 2.  [os structures](#os-structures)  
@@ -352,8 +352,150 @@ int main() {
 ###  swap
 
 ```cpp
+void Swap(boolean *a, boolean *b) {
+    boolean temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
+int main() {
+    do {
+        key = true;
+        while (key = true) {
+            Swap(&lock, &key);
+        }
+        //  critical section
+        lock = false;
+        //  remainder section
+    } while(true);
+
+    return(0);
+}
 ```
 
+###  semaphore
+
+synchronization tool that does not require busy waiting
+
+standard operations are `wait()` and `signal()` these are the only operations that can access semaphore $S$
+
+can have **counting** unrestricted range and **binary** semaphores
+
+###  deadlock
+
+two or more processes are waiting indefinitely for an event that can be caused by only one of the waiting processes
+
+most operating systems do not prevent or deal with deadlocks
+
+can cause **starvation** and **priority inversion** lower priority process holds lock needed by higher priority process 
+
+other synchronization problems include **bounded buffer problem** and **readers writers problem**
+
+###  monitor
+
+monitor is a high level abstraction that provides a convenient and effective mechanism for process synchronization
+
+only one process may be active within the monitor at a time
+
+can utilize **condition** variables to suspend a resume process (ex. condition `x`, `y;`)
+
+`x.wait()` -  a process that invokes the operation is suspended until `x.signal()`
+
+`x.signal()` -  resumes one of processes if any that invoked `x.wait()`
+
+can be implemented with semaphores
 
 ##  cpu scheduling
+
+###  cpu scheduling
+
+process execution consists of a cycle of cpu execution and i/o wait
+
+cpu scheduling decisions take place when a process...
+
+switches from running to waiting (nonpreemptive)
+
+switches from running to ready (preemptive)
+
+switches from waiting to ready (preemptive)
+
+terminates (nonpreemptive)
+
+###  dispatcher
+
+the dispatcher module gives control of the cpu to the process selected by the short term scheduler
+
+**dispatch latency** is the time it takes for the dispatcher to stop one process and start another
+
+###  scheduling algorithms
+
+scheduling algorithms are chosen based on optimization criteria (ex. throughput, turnaround time, etc)
+
+fcfs -  first come first served
+
+sjf -  shortest job first
+
+preemptive sjf -  shortest remaining time first 
+
+round robin 
+
+priority scheduling
+
+###  exponential averaging
+
+determining length of the next cpu burst is known as exponential averaging
+
+1.  $t_{n} =$ actual length of nth cpu burst
+2.  $\tau_{n + 1} =$ predicted value for the next cpu burst
+3.  $\alpha, 0 \leq \alpha \leq 1$ commonly $\alpha$ set to $1/2$
+4.  define $\tau_{n + 1} = \alpha * t_{n} + (1 - \alpha) * \tau_{n}$
+
+###  priority scheduling
+
+priority scheduling can result in **starvation**, which can be solved by **aging** a process (as time progresses, increase the priority)
+
+###  round robin
+
+in round robin small time quantums can result in large amounts of context switches
+
+time quantum should be chosen so that 80% of processes have short burst times than the time quantum
+
+###  multilevel queues / multilevel feedback queues
+
+multilevel queues and multilevel feedback queues have multiple process queues that have different priority levels 
+
+in the feedback queue, priority is not fixed $\rightarrow$ processes can be promoted and demoted to different queues
+
+feedback queues can have different scheduling algorithms at different levels
+
+###  multiprocessor scheduling
+
+multiprocessor scheduling is done in several different ways
+
+**asymmetric multiprocessing** -  only one processor accesses system data structures $\rightarrow$ no need to data share
+
+**symmetric multiprocessing** -  each processor is self scheduling (currently the most common method)
+
+**processor affinity** -  a process running on one processor is more likely to continue to run on the same processor, so that the processor's memory still contains data specific to that specific process
+
+###  little's formula
+
+little's formula can help determine average wait time per process in any scheduling algorithm
+
+$n = \lambda \times W$
+
+$n =$  average queue length
+
+$W =$ average waiting time in queue
+
+$\lambda =$ average arrival rate into queue
+
+###  simulations 
+
+simulations are programmed models of a computer system with variable clocks
+
+used to gather statistics indicating algorithm performance
+
+running simulations is more accurate than queuing models like little's law
+
+although more accurate, high cost and high risk

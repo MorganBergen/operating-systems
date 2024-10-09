@@ -11,81 +11,99 @@
 
 ##  introduction
 
-####  operating system
+###  operating system
 
--  an os is a program that acts as an intermediary between the user of a computer and the computer hardware
--  goals of the os are to execute programs, make the computer system easy to use, and utilize hardware efficiently
--  hardware $\leftrightarrow$ os $\leftrightarrow$ applications $\leftrightarrow$ users
--  an os is a resource allocator and a control program
-    +  a resource allocator decides between conflicting requests for efficient and fair resource use
-    +  a control program controls execution of programs to prevent errors and improper use of the computer
+an os is a program that acts as an intermediary between the user of a computer and the computer hardware
 
-####  kernel
+goals of the os are to execute programs, make the computer system easy to use, and utilize hardware efficiently
 
--  the kernel is the one program running at all times on the computer
+hardware $\leftrightarrow$ os $\leftrightarrow$ applications $\leftrightarrow$ users
 
-####  bootstrap program
+an os is a resource allocator and a control program
 
--  loaded at power up or reboot
-    +  stored in rom or eprom known as **firmware**, initializes all aspects of the system and loads os kernel and starts execution
--  i/o and cpu can execute concurrently
--  device controllers inform the cpu that it is finished with operating by causing an **interrupt**
-    +  interrupt transfers control the interrupt service routine generally, through the **interrupt vector**, which contains the addresses of all the service routines
-    +  incoming interrupts are disabled while another interrupt is being processes
-    +  **trap** is a software generated interrupt caused by error or user request
-    +  os determines which type of interrupt has occurred by **polling** or the **vector interrupt system**
+a resource allocator decides between conflicting requests for efficient and fair resource use
 
-####  system call
+a control program controls execution of programs to prevent errors and improper use of the computer
 
--  request to the operating system to allow user to wait for i/o completion
+###  kernel
 
-####  device status table
+the kernel is the one program running at all times on the computer
 
--  contains entry for each i/o device indicating its type, address, and state
--  os indexes into the i/o device table to determine device status and to modify the table entry to include interrupt
+###  bootstrap program
 
-####  storage structure
+loaded at power up or reboot, stored in rom or eprom known as **firmware**, initializes all aspects of the system and loads os kernel and starts execution
 
--  main memory -  **random access**, **volatile**
--  secondary memory -  extension of main memory that provides large **non-volatile** storage
--  disk -  divided into **tracks** which are subdivided into **sectors**, the **disk controller** determines logical interaction between the device of the computer
+i/o and cpu can execute concurrently
 
-####  caching
+device controllers inform the cpu that it is finished with operating by causing an **interrupt**
 
--  copying information into faster a storage system
+interrupt transfers control the interrupt service routine generally, through the **interrupt vector**, which contains 
 
-####  multiprocessor systems
+the addresses of all the service routines
 
--  increased throughput, economy of scale, increased reliability
--  can be asymmetric or symmetric
--  **clustered systems** -  linked multiprocessor systems
+incoming interrupts are disabled while another interrupt is being processes
 
-####  multiprogramming
+**trap** is a software generated interrupt caused by error or user request
 
--  provides efficiency via **job scheduling**
--  when the os has to wait (ex. for i/o), switches to another job
+os determines which type of interrupt has occurred by **polling** or the **vector interrupt system**
 
-####  timesharing
+###  system call
 
--  cpu switches jobs so frequently that each user can interact with each job while its running **interactive computing**
+request to the operating system to allow user to wait for i/o completion
 
-####  dual mode
+###  device status table
 
--  dual mode operation allows os to protect itself and other system components -  **user mode** and **kernel mode**
--  some instructions are only executable in kernel mode, these are **privileged**
--  single threaded processes have one **program counter**, multi threaded processes have one pc per thread
+contains entry for each i/o device indicating its type, address, and state
 
-####  protection
+os indexes into the i/o device table to determine device status and to modify the table entry to include interrupt
 
--  mechanism for controlling access of processes or users to resources defined by the operating system
+###  storage structure
 
-####  security
+main memory -  **random access**, **volatile**
 
--  defense of a system against attacks
+secondary memory -  extension of main memory that provides large **non-volatile** storage
 
-####  user ids
+disk -  divided into **tracks** which are subdivided into **sectors**, the **disk controller** determines logical interaction between the device of the computer
 
--  one per user and **group id**, determine which users and groups of users have which privileges
+###  caching
+
+copying information into faster a storage system
+
+###  multiprocessor systems
+
+increased throughput, economy of scale, increased reliability
+can be asymmetric or symmetric
+**clustered systems** -  linked multiprocessor systems
+
+###  multiprogramming
+
+provides efficiency via **job scheduling**
+
+when the os has to wait (ex. for i/o), switches to another job
+
+###  timesharing
+
+cpu switches jobs so frequently that each user can interact with each job while its running **interactive computing**
+
+###  dual mode
+
+dual mode operation allows os to protect itself and other system components -  **user mode** and **kernel mode**
+
+some instructions are only executable in kernel mode, these are **privileged**
+
+single threaded processes have one **program counter**, multi threaded processes have one pc per thread
+
+###  protection
+
+mechanism for controlling access of processes or users to resources defined by the operating system
+
+###  security
+
+defense of a system against attacks
+
+###  user ids
+
+one per user and **group id**, determine which users and groups of users have which privileges
 
 ##  os structures
 
@@ -133,7 +151,7 @@ the operating system is divided into a number of layers or levels, each built on
 
 with modularity, layers are selected such that each uses functions or operations and services of only lower level layers
 
-####  virtual machine
+###  virtual machine
 
 uses the layered approach, treats hardware and the os kernel as through they were all hardware
 
@@ -146,6 +164,26 @@ application failures can generate **core dump** file capturing memory of the pro
 operating system failure can generate **crash dump** file containing kernel memory
 
 ##  processes
+
+###  process
+
+a process contains a program counter, stack and data section
+
+**text section** program code itself
+
+**stack** is temporary data such as function parameters, return addresses, and local variables
+
+**heap** contains memory dynamically allocated during run time
+
+###  process control block 
+
+a process control block contains information associated with each process, process state, pc, cpu registers, scheduling information, accounting information, and i/o status information
+
+###  types of processes
+
+**i/o bound processes** -  spends more time doing i/o than computations, many short cpu bursts
+
+**cpu bound processes** -  spends more time doing computations, few very long cpu bursts
 
 ##  threads
 

@@ -89,7 +89,7 @@
 
 ##  os structures
 
-####  user interface
+###  user interface
 
 a user interface can be command line or graphic user interface or batch
 
@@ -107,23 +107,43 @@ system call interface maintains a table indexed according to these numbers
 
 parameters may need to be passed to the os during a system call, may be done by, passing in registers, address of parameter stored in a **block**, **pushed** onto the stack by the programming and **popped** off by the operating system or block and stack methods do not limit the number or length of parameters being passed.
 
-####  process control system calls
+###  process control system calls
 
 `end`, `abort`, `load`, `execute`, `create process` / `terminate process`, `wait`, `allocate memory` / `free memory`
 
-####  file management system calls
+###  file management system calls
 
 `create file`, `delete file`, `open file`, `close file`, `read`, `write`, `allocate memory`, `free memory`
 
-####  device management system calls
+###  device management system calls
 
 `request device`, `release device`, `read`, `write`, `logically attach devices` / `logically detach devices`
 
-####  information maintenance  system calls
+###  information maintenance  system calls
 
 `get time`, `set time`, `get system data`, `set system data`, `get process attributes`, `get file attributes`, `get device attributes`, `set process attributes`, `set file attributes`, `set device attributes`
 
-####  communication system calls
+###  communication system calls
+
+`create communication connection`, `delete communication connection`, `send`, `transfer status information`
+
+###  os layered approach
+
+the operating system is divided into a number of layers or levels, each built on top of lower levels.  the bottom layer is layer 0 is the hardware and the highest layer n is the user interface
+
+with modularity, layers are selected such that each uses functions or operations and services of only lower level layers
+
+####  virtual machine
+
+uses the layered approach, treats hardware and the os kernel as through they were all hardware
+
+**host** creates the illusion that a process has its own processor and own virtual memory
+
+each **guest** provided with a virtual copy of the underlying computer 
+
+application failures can generate **core dump** file capturing memory of the process
+
+operating system failure can generate **crash dump** file containing kernel memory
 
 ##  processes
 

@@ -89,7 +89,9 @@
 
 ##  os structures
 
-**user interface**  can be command line or graphic user interface or batch
+####  user interface
+
+a user interface can be command line or graphic user interface or batch
 
 these allow for the user to interact with the system services via system calls typically written in c/c++
 

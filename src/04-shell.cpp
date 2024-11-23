@@ -1,21 +1,22 @@
-#include <cstdlib> // Include the C Standard Library for system() function
-#include <iostream> // Include the C++ Standard Library for cout and endl
-using namespace std;
+#include <iostream> // Include iostream for output
+#include <cstdlib>  // Include the C Standard Library for system() function
 
-int main()
-{
-    // Executing the system command "echo Hello, World!" and storing the return value
-    int returnCode = system("echo Hello, World!");
+int main() {
+    // Print a message before executing the command
+    std::cout << "Printing the current working directory:" << std::endl;
 
-    // Checking if the command was executed successfully
-    if (returnCode == 0) {
-        // Output message indicating successful command execution
-        cout << "Command executed successfully." << endl;
-    }
-    else {
-        // Output message indicating command execution failure or non-zero return value
-        cout << "Command execution failed or returned non-zero: " << returnCode << endl;
+    // Execute the command "cd" to print the working directory
+    int result = system("cd");
+
+    // Check if the command was executed successfully
+    if (result != 0) {
+        std::cerr << "Failed to print the working directory." << std::endl;
+        return 1; // Return 1 to indicate an error
     }
 
-    return 0; // Return 0 to indicate successful execution
+    // Print a success message
+    std::cout << "Working directory printed successfully." << std::endl;
+
+    // Return 0 to indicate successful execution
+    return 0;
 }
